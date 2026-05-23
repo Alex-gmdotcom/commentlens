@@ -1,0 +1,314 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>CommentLens Analysis Report - JetKVM</title>
+        <style>
+            body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: #0a0e17; color: #e2e8f0; margin: 0; padding: 40px; }
+            h1, h2, h3 { color: #ffffff; }
+            .container { max-width: 1100px; margin: 0 auto; }
+            .header { border-bottom: 1px solid #1e293b; padding-bottom: 20px; margin-bottom: 24px; }
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+            .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+            .card { background: #111827; border: 1px solid #1e293b; padding: 20px; border-radius: 12px; margin-bottom: 20px; line-height: 1.5; }
+            .border-red { border-top: 3px solid #ef4444; }
+            .border-blue { border-top: 3px solid #3b82f6; }
+            .border-green { border-top: 3px solid #22c55e; }
+            .border-amber { border-top: 3px solid #f59e0b; }
+            .badge { background: #1e293b; padding: 4px 8px; border-radius: 4px; font-size: 12px; margin-top: 10px; display: inline-block; color: #94a3b8; }
+            .footer { text-align: center; margin-top: 40px; color: #64748b; font-size: 12px; }
+            .exec-headline { font-size: 19px; color: #fbbf24; line-height: 1.5; font-weight: 600; margin-bottom: 16px; padding-left: 12px; border-left: 3px solid #f59e0b; }
+            .insight-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+            .insight-box { padding: 12px; background: rgba(245, 158, 11, 0.05); border-radius: 8px; border-left: 2px solid #f59e0b; }
+            .insight-label { font-size: 11px; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>📊 CommentLens Analysis Report: JetKVM</h1>
+                <p style="color: #94a3b8;">Video: <a href="https://www.youtube.com/watch?v=ZhruWAaHcgg" style="color: #3b82f6;" target="_blank">https://www.youtube.com/watch?v=ZhruWAaHcgg</a> | 200 comments analyzed</p>
+            </div>
+
+            
+    <div class='card border-amber'>
+        <h3>Executive Summary</h3>
+        <div class="exec-headline">JetKVM's core crisis is not missing features — it's a dual threat of supply constraints and eroding security trust that is quietly undermining product reputation</div>
+        <div style="margin-top:12px;"><div style="font-size:13px;color:#f59e0b;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">⚡ Counter-Intuitive Findings</div><ol style="padding-left:20px;color:#cbd5e1;font-size:14px;"><li style="margin-bottom:10px;line-height:1.5;">Security anxiety overshadows feature complaints: user discussions about remote access security (MITM attacks, privacy risks, firewall traversal) far exceed technical feature complaints, yet the company has remained largely silent</li><li style="margin-bottom:10px;line-height:1.5;">Price advantage is backfiring on brand trust: users praise the affordable pricing compared to PiKVM while simultaneously expressing deep distrust about Kickstarter delays and shipping timelines stretching to 2029 — creating a paradox of low price and high perceived risk</li><li style="margin-bottom:10px;line-height:1.5;">Remote family assistance is an overlooked core use case: multiple users mention using JetKVM to help parents or family members troubleshoot computer issues, breaking the KVM=enterprise server assumption and revealing a significant consumer market opportunity</li></ol></div>
+        <div class="insight-row">
+            <div class="insight-box">
+                <div class="insight-label">🎯 Opportunity Window</div>
+                <div style="font-size:13px;color:#cbd5e1;">Expand product positioning from "server room KVM replacement" to "family tech support tool" — develop a dedicated feature set for remote elderly assistance (e.g., one-click help button, simplified UI, self-diagnostic wizard)</div>
+            </div>
+            <div class="insight-box">
+                <div class="insight-label">⚠️ Risk Signal</div>
+                <div style="font-size:13px;color:#cbd5e1;">Security vulnerabilities remain unaddressed by the company — users have explicitly raised MITM attack concerns. A security incident at the crowdfunding stage would be devastating to brand credibility</div>
+            </div>
+        </div>
+    </div>
+
+            <div class="card">
+                <h3>📊 Sentiment Breakdown</h3>
+                
+    <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:12px;">
+        <div style="flex:1; min-width:120px; background:#052e16; border-radius:10px; padding:16px; text-align:center;">
+            <div style="font-size:28px; font-weight:900; color:#22c55e;">45</div>
+            <div style="font-size:12px; color:#86efac;">Positive</div>
+            <div style="font-size:11px; color:#4ade80;">22%</div>
+        </div>
+        <div style="flex:1; min-width:120px; background:#2d1215; border-radius:10px; padding:16px; text-align:center;">
+            <div style="font-size:28px; font-weight:900; color:#ef4444;">64</div>
+            <div style="font-size:12px; color:#fca5a5;">Negative</div>
+            <div style="font-size:11px; color:#f87171;">32%</div>
+        </div>
+        <div style="flex:1; min-width:120px; background:#1e293b; border-radius:10px; padding:16px; text-align:center;">
+            <div style="font-size:28px; font-weight:900; color:#94a3b8;">87</div>
+            <div style="font-size:12px; color:#cbd5e1;">Neutral</div>
+            <div style="font-size:11px; color:#94a3b8;">44%</div>
+        </div>
+        <div style="flex:1; min-width:120px; background:#1c1a07; border-radius:10px; padding:16px; text-align:center;">
+            <div style="font-size:28px; font-weight:900; color:#eab308;">4</div>
+            <div style="font-size:12px; color:#fde047;">Mixed</div>
+            <div style="font-size:11px; color:#facc15;">2%</div>
+        </div>
+    </div>
+            </div>
+
+            
+    <div class='card'>
+        <h3>✅ Action Checklist</h3>
+        <div class="grid-3" style="margin-top:12px;">
+            <div>
+                <div style="font-size:11px;color:#f97316;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">This Week</div>
+                <ul style="padding-left:20px;color:#cbd5e1;font-size:13px;"><li style="margin-bottom:6px;line-height:1.5;">Publish a security statement or whitepaper directly addressing user concerns about MITM attacks and privacy risks</li><li style="margin-bottom:6px;line-height:1.5;">Clearly label "no audio support" on all product pages and videos to reduce expectation mismatch</li><li style="margin-bottom:6px;line-height:1.5;">Create a dedicated FAQ addressing Kickstarter crowdfunding and shipping timeline questions</li></ul>
+            </div>
+            <div>
+                <div style="font-size:11px;color:#eab308;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">This Month</div>
+                <ul style="padding-left:20px;color:#cbd5e1;font-size:13px;"><li style="margin-bottom:6px;line-height:1.5;">Begin retail channel evaluation and negotiation for North America and other underserved regions</li><li style="margin-bottom:6px;line-height:1.5;">Reach out to Home Assistant community leads to explore integration feasibility</li><li style="margin-bottom:6px;line-height:1.5;">Evaluate technical roadmap and cost impact of upgrading to Gigabit Ethernet</li></ul>
+            </div>
+            <div>
+                <div style="font-size:11px;color:#3b82f6;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Monitor</div>
+                <ul style="padding-left:20px;color:#cbd5e1;font-size:13px;"><li style="margin-bottom:6px;line-height:1.5;">Frequency of "security vulnerability" discussions on social media and forums</li><li style="margin-bottom:6px;line-height:1.5;">Sentiment trends among crowdfunding backers</li><li style="margin-bottom:6px;line-height:1.5;">GL-iNet Comet Pro pricing and feature update activity</li></ul>
+            </div>
+        </div>
+    </div>
+
+            <div class="grid">
+                <div>
+                    <h3>🔥 Pain Points</h3>
+                    <div class='card border-red'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#1</span>
+                <strong style='color:#fca5a5;'>Severe US/global supply shortage</strong>
+                <span style="background:#dc2626;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">CRITICAL</span>
+            </div>
+            <small style="color:#94a3b8;">US users widely report the product is unavailable or shipping is delayed to 2025–2029, causing significant loss of interested buyers</small>
+            <div style="margin-top:8px;padding:8px;background:rgba(248,113,113,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Attribution:</div><div style="font-size:12px;color:#cbd5e1;">product_issue</div></div><div style="margin-top:6px;padding:8px;background:rgba(34,197,94,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Recommended Action:</div><div style="font-size:12px;color:#cbd5e1;">Prioritize opening retail channels in North America/Europe, or publish a clear global shipping timeline</div></div>
+            <div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"USA here, I want to buy but can't"</div><div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"Not available in US currently. Shipping to 2029 lol"</div>
+            <span class='badge'>Mentions: 21 · All 21 mentions are about "cannot buy" rather than "feature gaps" — this is a market access issue, not a product issue, directly cutting off potential conversions</span>
+        </div><div class='card border-red'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#2</span>
+                <strong style='color:#fca5a5;'>Remote access security and trust concerns</strong>
+                <span style="background:#dc2626;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">CRITICAL</span>
+            </div>
+            <small style="color:#94a3b8;">Users worry that remote access via JetKVM may be vulnerable to man-in-the-middle attacks, privacy leaks, or malicious surveillance</small>
+            <div style="margin-top:8px;padding:8px;background:rgba(248,113,113,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Attribution:</div><div style="font-size:12px;color:#cbd5e1;">product_issue</div></div><div style="margin-top:6px;padding:8px;background:rgba(34,197,94,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Recommended Action:</div><div style="font-size:12px;color:#cbd5e1;">Publish a security whitepaper, commission third-party security audits, and add strong authentication mechanisms like 2FA</div></div>
+            <div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"What about security? MITM attack?"</div><div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"Privacy concerns for remote access"</div><div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"Device can be misused for stalking"</div>
+            <span class='badge'>Mentions: 12 · Covers MITM attack risks, privacy concerns, and potential misuse — the only pain point shared across both technical and non-technical user segments</span>
+        </div><div class='card border-red'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#3</span>
+                <strong style='color:#fca5a5;'>No audio passthrough</strong>
+                <span style="background:#f97316;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">HIGH</span>
+            </div>
+            <small style="color:#94a3b8;">Users cannot transmit audio from the remote computer via JetKVM, making remote gaming, music, and other multimedia scenarios impossible</small>
+            <div style="margin-top:8px;padding:8px;background:rgba(248,113,113,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Attribution:</div><div style="font-size:12px;color:#cbd5e1;">product_issue</div></div><div style="margin-top:6px;padding:8px;background:rgba(34,197,94,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Recommended Action:</div><div style="font-size:12px;color:#cbd5e1;">Develop a USB audio passthrough solution or integrate remote desktop tools like Parsec as an audio supplement</div></div>
+            <div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"Audio would be nice for gaming"</div><div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"No audio support is a dealbreaker"</div>
+            <span class='badge'>Mentions: 3 · Though only 3 direct mentions, it correlates with "remote gaming" and "Parsec alternative" discussions, suggesting audio absence limits expansion into multimedia remote scenarios</span>
+        </div><div class='card border-red'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#4</span>
+                <strong style='color:#fca5a5;'>Missing power cycle / ATX control</strong>
+                <span style="background:#f97316;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">HIGH</span>
+            </div>
+            <small style="color:#94a3b8;">Cannot remotely power on/off the controlled computer via JetKVM, limiting full out-of-band management capability</small>
+            <div style="margin-top:8px;padding:8px;background:rgba(248,113,113,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Attribution:</div><div style="font-size:12px;color:#cbd5e1;">product_issue</div></div><div style="margin-top:6px;padding:8px;background:rgba(34,197,94,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Recommended Action:</div><div style="font-size:12px;color:#cbd5e1;">Accelerate ATX module development and prioritize its release</div></div>
+            <div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"Need ATX power control"</div><div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"No power reboot is missing"</div>
+            <span class='badge'>Mentions: 3 · Users explicitly request remote power on/off and reboot capabilities, essential for true out-of-band management</span>
+        </div><div class='card border-red'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#5</span>
+                <strong style='color:#fca5a5;'>Resolution limited to 1080p 60Hz</strong>
+                <span style="background:#eab308;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">MEDIUM</span>
+            </div>
+            <small style="color:#94a3b8;">Currently only supports 1080p 60Hz output, resulting in a poor experience for 4K monitor users or those needing high-resolution interfaces</small>
+            <div style="margin-top:8px;padding:8px;background:rgba(248,113,113,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Attribution:</div><div style="font-size:12px;color:#cbd5e1;">product_issue</div></div><div style="margin-top:6px;padding:8px;background:rgba(34,197,94,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Recommended Action:</div><div style="font-size:12px;color:#cbd5e1;">Evaluate 4K support technical feasibility and include it in the public roadmap</div></div>
+            <div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"1080p only is limiting"</div><div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"GL-RM1 has better resolution support"</div>
+            <span class='badge'>Mentions: 2 · Competitor GL-RM1 already supports higher resolution, impacting design/media professionals who need better visual fidelity</span>
+        </div><div class='card border-red'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#6</span>
+                <strong style='color:#fca5a5;'>100 Mbps Ethernet port insufficient</strong>
+                <span style="background:#eab308;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">MEDIUM</span>
+            </div>
+            <small style="color:#94a3b8;">The 100 Mbps Ethernet port may become a bottleneck in high-bandwidth scenarios such as HD video transmission</small>
+            <div style="margin-top:8px;padding:8px;background:rgba(248,113,113,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Attribution:</div><div style="font-size:12px;color:#cbd5e1;">product_issue</div></div><div style="margin-top:6px;padding:8px;background:rgba(34,197,94,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Recommended Action:</div><div style="font-size:12px;color:#cbd5e1;">Consider upgrading to Gigabit Ethernet in future revisions</div></div>
+            <div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"100Mbps is too slow for remote video"</div>
+            <span class='badge'>Mentions: 1 · Users directly point out latency issues, and competitors commonly offer Gigabit Ethernet — this will become a technical disadvantage long-term</span>
+        </div><div class='card border-red'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#7</span>
+                <strong style='color:#fca5a5;'>DisplayPort adapter prone to breakage</strong>
+                <span style="background:#eab308;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">MEDIUM</span>
+            </div>
+            <small style="color:#94a3b8;">Users report the DisplayPort adapter has poor build quality and breaks easily</small>
+            <div style="margin-top:8px;padding:8px;background:rgba(248,113,113,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Attribution:</div><div style="font-size:12px;color:#cbd5e1;">product_issue</div></div><div style="margin-top:6px;padding:8px;background:rgba(34,197,94,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Recommended Action:</div><div style="font-size:12px;color:#cbd5e1;">Switch suppliers or include a spare adapter</div></div>
+            <div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"DisplayPort adapter broke easily"</div>
+            <span class='badge'>Mentions: 1 · Physical connection reliability issue affecting user trust in product durability</span>
+        </div><div class='card border-red'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#8</span>
+                <strong style='color:#fca5a5;'>High Kickstarter crowdfunding risk</strong>
+                <span style="background:#eab308;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">MEDIUM</span>
+            </div>
+            <small style="color:#94a3b8;">Users express concern about backing JetKVM on Kickstarter, worrying about project failure or non-delivery</small>
+            <div style="margin-top:8px;padding:8px;background:rgba(248,113,113,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Attribution:</div><div style="font-size:12px;color:#cbd5e1;">expectation_mismatch</div></div><div style="margin-top:6px;padding:8px;background:rgba(34,197,94,0.05);border-radius:6px;"><div style="font-size:11px;color:#64748b;margin-bottom:4px;">Recommended Action:</div><div style="font-size:12px;color:#cbd5e1;">Provide regular project updates and establish community communication channels</div></div>
+            <div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"Kickstarter projects are risky"</div><div style="font-size:12px;color:#94a3b8;font-style:italic;border-left:2px solid #334155;padding-left:8px;margin-top:6px;">"Backed but worried about delivery"</div>
+            <span class='badge'>Mentions: 2 · Trust issue inherent to crowdfunding model — unrelated to product features but directly impacts purchase decisions</span>
+        </div>
+                </div>
+                <div>
+                    <h3>💡 Feature Requests</h3>
+                    <div class='card border-blue'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#1</span>
+                <strong style='color:#93c5fd;'>Audio passthrough support</strong>
+                <span style="background:#f97316;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">P1</span>
+            </div>
+            <small style="color:#94a3b8;">Users want audio transmission from the remote computer for gaming, music, and video conferencing scenarios</small>
+            <span class='badge'>Mentions: 3 · Links with other feature requests and is key to expanding use case coverage</span>
+        </div><div class='card border-blue'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#2</span>
+                <strong style='color:#93c5fd;'>Gigabit Ethernet port</strong>
+                <span style="background:#f97316;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">P1</span>
+            </div>
+            <small style="color:#94a3b8;">Upgrade network interface to Gigabit to support higher-bandwidth remote video transmission</small>
+            <span class='badge'>Mentions: 2 · Directly solves the 100 Mbps bottleneck and improves remote video quality</span>
+        </div><div class='card border-blue'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#3</span>
+                <strong style='color:#93c5fd;'>Home Assistant integration</strong>
+                <span style="background:#f97316;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">P1</span>
+            </div>
+            <small style="color:#94a3b8;">Integrate with Home Assistant platform, enabling smart home system control of JetKVM</small>
+            <span class='badge'>Mentions: 1 · Strong demand from smart home users; could position KVM within the home automation ecosystem</span>
+        </div><div class='card border-blue'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#4</span>
+                <strong style='color:#93c5fd;'>Cloud remote connection</strong>
+                <span style="background:#f97316;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">P1</span>
+            </div>
+            <small style="color:#94a3b8;">Provide cloud relay service so users can access remotely without configuring routers</small>
+            <span class='badge'>Mentions: 1 · Solves the firewall traversal pain point and lowers the barrier to entry</span>
+        </div><div class='card border-blue'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#5</span>
+                <strong style='color:#93c5fd;'>Open retail channels</strong>
+                <span style="background:#dc2626;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">P0</span>
+            </div>
+            <small style="color:#94a3b8;">Open official retail channels beyond Kickstarter for global users to purchase</small>
+            <span class='badge'>Mentions: 2 · Supply is the #1 pain point; this is the only path to solving the "cannot buy" problem</span>
+        </div><div class='card border-blue'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#6</span>
+                <strong style='color:#93c5fd;'>High-resolution output (4K support)</strong>
+                <span style="background:#eab308;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">P2</span>
+            </div>
+            <small style="color:#94a3b8;">Support 4K resolution output to meet the needs of high-resolution display users</small>
+            <span class='badge'>Mentions: 2 · Niche demand; 1080p is sufficient for most scenarios</span>
+        </div><div class='card border-blue'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#7</span>
+                <strong style='color:#93c5fd;'>Multi-server / multi-device connection</strong>
+                <span style="background:#eab308;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">P2</span>
+            </div>
+            <small style="color:#94a3b8;">One JetKVM unit connecting to multiple servers with switchable views</small>
+            <span class='badge'>Mentions: 1 · Natural extension from single-device to multi-device management</span>
+        </div><div class='card border-blue'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#8</span>
+                <strong style='color:#93c5fd;'>Multiple 2FA authentication methods</strong>
+                <span style="background:#eab308;color:white;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">P2</span>
+            </div>
+            <small style="color:#94a3b8;">Support TOTP, WebAuthn, and other two-factor authentication methods</small>
+            <span class='badge'>Mentions: 1 · Security is a core pain point; 2FA is a direct way to improve it</span>
+        </div>
+                </div>
+            </div>
+
+            <h3>⭐ Praise Points</h3>
+            <div class="grid">
+                <div class='card border-green'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#1</span>
+                <strong style='color:#86efac;'>Practical for remote family assistance</strong>
+                <span style="background:#f59e0b;color:white;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:bold;">Unexpected</span>
+            </div>
+            <small style="color:#94a3b8;">Users explicitly mention using JetKVM to remotely help parents or family troubleshoot computer issues, breaking the traditional B2B KVM positioning</small>
+            <span class='badge'>Mentions: 2</span>
+        </div><div class='card border-green'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#2</span>
+                <strong style='color:#86efac;'>Affordable price, better value than PiKVM</strong>
+                
+            </div>
+            <small style="color:#94a3b8;">Compared to PiKVM at ~$400, JetKVM's price advantage is significant and attractive to price-sensitive users</small>
+            <span class='badge'>Mentions: 2</span>
+        </div><div class='card border-green'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#3</span>
+                <strong style='color:#86efac;'>Excellent product concept and use cases</strong>
+                
+            </div>
+            <small style="color:#94a3b8;">Users appreciate the overall design philosophy and target use cases of the product</small>
+            <span class='badge'>Mentions: 1</span>
+        </div><div class='card border-green'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#4</span>
+                <strong style='color:#86efac;'>Backed on Kickstarter and received delivery</strong>
+                
+            </div>
+            <small style="color:#94a3b8;">Early backers have successfully received the product, demonstrating basic delivery capability</small>
+            <span class='badge'>Mentions: 2</span>
+        </div><div class='card border-green'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#5</span>
+                <strong style='color:#86efac;'>Great video review</strong>
+                
+            </div>
+            <small style="color:#94a3b8;">Users praise the quality of the product review video, which helps with product awareness</small>
+            <span class='badge'>Mentions: 2</span>
+        </div><div class='card border-green'>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+                <span style="font-size:22px;font-weight:900;color:#334155;">#6</span>
+                <strong style='color:#86efac;'>Open source and customizable</strong>
+                
+            </div>
+            <small style="color:#94a3b8;">The open-source nature attracts technical users who can customize and extend the product</small>
+            <span class='badge'>Mentions: 1</span>
+        </div>
+            </div>
+
+            <div class='card'><h3>🏁 Competitive Insights</h3><div style="padding:10px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;"><span style="color:#f97316;font-weight:bold;">1. </span>GL-iNet Comet Pro is mentioned multiple times as a competitor — priced ~AU$100 more than JetKVM but ships faster, with the company having more experience in routers and more frequent firmware updates</div><div style="padding:10px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;"><span style="color:#f97316;font-weight:bold;">2. </span>HP/HPE iLO is called "GOAT-level" by users, indicating strong enterprise user loyalty to traditional IPMI solutions</div><div style="padding:10px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;"><span style="color:#f97316;font-weight:bold;">3. </span>PiKVM can be self-built but costs ~$400; users see JetKVM as more affordable, though DIY solutions may offer more flexibility and customizability</div><div style="padding:10px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;"><span style="color:#f97316;font-weight:bold;">4. </span>vPro/Intel AMT is mentioned as a remote management alternative, suggesting some users see JetKVM as a simplified, more affordable substitute for vPro</div><div style="padding:10px 0;border-bottom:1px solid #1e293b;color:#cbd5e1;"><span style="color:#f97316;font-weight:bold;">5. </span>Parsec and Sunshine are used by users as audio workarounds, indicating JetKVM needs to either differentiate from or integrate with remote desktop software</div></div>
+            
+            <div class="footer">
+                💡 Full per-comment analysis data exported to CSV in the same directory for manual review.<br>
+                Generated by CommentLens
+            </div>
+        </div>
+    </body>
+    </html>
+    
