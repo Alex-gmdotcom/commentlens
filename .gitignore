@@ -1,0 +1,25 @@
+# Config with API keys
+.commentlens_config.json
+
+# Output files
+CommentLens_Report_*.html
+CommentLens_Data_*.csv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

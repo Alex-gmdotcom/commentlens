@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CommentLens — YouTube comment intelligence, on demand</title>
+  <meta name="description" content="We turn thousands of YouTube comments into a structured product-intelligence report. Sentiment, pain points, feature requests, competitive mentions — delivered as a PDF in 48–72 hours.">
+
+  <meta property="og:title" content="CommentLens — YouTube comment intelligence, on demand">
+  <meta property="og:description" content="Structured insight from thousands of YouTube comments. Delivered as a PDF in 48–72 hours.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:        #1a2820;
+      --ink-soft:   #3d4f44;
+      --ink-muted:  #6b7a70;
+      --paper:      #faf7f0;
+      --paper-warm: #f4eee0;
+      --line:       #d8d1c0;
+      --accent:     #2d4a3a;
+      --accent-dim: #4a6b58;
+      --highlight:  #d96f4e;
+      --highlight-soft: #e89478;
+
+      --font-display: 'Fraunces', 'Times New Roman', serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+      --max-w: 1080px;
+      --gutter: clamp(20px, 5vw, 56px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* paper grain */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1, 0 0 0 0 0.16, 0 0 0 0 0.12, 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+      mix-blend-mode: multiply;
+    }
+
+    .wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    nav a.nav-link {
+      font-size: 14px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      margin-left: 28px;
+      transition: color 0.2s;
+    }
+    nav a.nav-link:hover { color: var(--highlight); }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 100px 0 80px;
+      max-width: 780px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5.5vw, 56px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--highlight);
+      font-weight: 300;
+    }
+    .hero p {
+      font-size: 19px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+    .hero-cta {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-dim); }
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--accent);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 32px;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: var(--accent); color: var(--paper); }
+
+    /* ===== SECTION ===== */
+    section { padding: 80px 0; }
+    section + section { border-top: 1px solid var(--line); }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .section-lead {
+      font-size: 18px;
+      color: var(--ink-soft);
+      max-width: 640px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    /* ===== PRICING ===== */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .price-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 36px 32px;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .price-card.featured {
+      border-color: var(--highlight);
+      border-width: 2px;
+    }
+    .price-card.featured::after {
+      content: 'Most popular';
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: var(--highlight);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .price-tier {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .price-name {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .price-amount {
+      font-family: var(--font-mono);
+      font-size: 36px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .price-amount small {
+      font-size: 14px;
+      color: var(--ink-muted);
+      font-weight: 400;
+    }
+    .price-desc {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin: 16px 0 24px;
+    }
+    .price-features {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .price-features li {
+      font-size: 14px;
+      color: var(--ink-soft);
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .price-features li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-dim);
+    }
+    .price-btn {
+      display: block;
+      text-align: center;
+      background: var(--accent);
+      color: var(--paper);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .price-btn:hover { background: var(--accent-dim); }
+
+    /* ===== HOW IT WORKS ===== */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+      margin-top: 20px;
+    }
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 48px;
+      font-weight: 500;
+      color: var(--line);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .step h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .step p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* ===== OPEN SOURCE ===== */
+    .oss-box {
+      background: var(--paper-warm);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 40px;
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .oss-box .oss-text { flex: 1; min-width: 300px; }
+    .oss-box .oss-code {
+      flex: 0 0 auto;
+      background: #1a2820;
+      color: #a8c4b0;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 24px;
+      border-radius: 8px;
+      line-height: 1.8;
+      min-width: 320px;
+    }
+    .oss-box .oss-code .cmd { color: #e89478; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer .f-left {
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+    footer .f-right a {
+      font-size: 14px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      margin-left: 24px;
+    }
+    footer .f-right a:hover { color: var(--highlight); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .hero { padding: 60px 0 40px; }
+      section { padding: 50px 0; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .oss-box { flex-direction: column; padding: 24px; }
+      .oss-box .oss-code { min-width: unset; width: 100%; }
+    }
+
+    /* ===== ANIMATION ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero h1, .hero p, .hero-cta {
+      animation: fadeUp 0.6s ease-out both;
+    }
+    .hero p { animation-delay: 0.1s; }
+    .hero-cta { animation-delay: 0.2s; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- NAV -->
+    <nav>
+      <a href="#" class="logo">CommentLens</a>
+      <div>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#open-source" class="nav-link">Open Source</a>
+        <a href="https://github.com/Alex-gmdotcom/commentlens" class="nav-link">GitHub</a>
+        <a href="mailto:olssonnasrudin207@gmail.com" class="nav-link">Contact</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <h1>YouTube comments hold <em>real product intelligence.</em> We extract it.</h1>
+      <p>
+        We analyze thousands of YouTube comments and deliver a structured report — sentiment, pain points, feature requests, competitive mentions, and actionable recommendations. You get a PDF in 48–72 hours.
+      </p>
+      <div class="hero-cta">
+        <a href="#pricing" class="btn-primary">Order a report</a>
+        <a href="https://github.com/Alex-gmdotcom/commentlens" class="btn-secondary">View on GitHub</a>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <section>
+      <div class="section-num">01 — Process</div>
+      <h2 class="section-title">How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>You send a video</h3>
+          <p>Share the YouTube URL and tell us which product to focus on. We confirm scope within a few hours.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>We analyze every comment</h3>
+          <p>Our pipeline classifies each comment — separating product feedback from YouTuber opinions and noise. Every pain point gets attribution and severity.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>You receive the report</h3>
+          <p>A structured PDF with executive summary, ranked pain points with recommended actions, feature requests, competitive intelligence, and a prioritized action checklist.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <div class="section-num">02 — Pricing</div>
+      <h2 class="section-title">Reports, not subscriptions</h2>
+      <p class="section-lead">
+        No SaaS login. No monthly fee. Order what you need, when you need it. Each report is a standalone deliverable you own forever.
+      </p>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-tier">Tier 1</div>
+          <div class="price-name">Single Video Deep-Dive</div>
+          <div class="price-amount">$49 <small>/ ¥349</small></div>
+          <p class="price-desc">One video, 500+ comments analyzed. The essentials for a product team that needs signal fast.</p>
+          <ul class="price-features">
+            <li>8–12 page PDF report</li>
+            <li>Executive summary with counter-intuitive findings</li>
+            <li>Ranked pain points with attribution &amp; recommended actions</li>
+            <li>Feature requests with priority levels</li>
+            <li>Raw data CSV included</li>
+            <li>Delivered in 48 hours</li>
+          </ul>
+          <a href="mailto:olssonnasrudin207@gmail.com?subject=CommentLens%20-%20Single%20Video%20Report&body=Hi%2C%0A%0AI'd%20like%20to%20order%20a%20Single%20Video%20Deep-Dive%20report.%0A%0AYouTube%20URL%3A%20%0AProduct%20name%3A%20%0APreferred%20report%20language%3A%20English%20%2F%20Chinese%0A%0AThanks!" class="price-btn">Order via email</a>
+        </div>
+
+        <div class="price-card featured">
+          <div class="price-tier">Tier 2</div>
+          <div class="price-name">Competitive Scan</div>
+          <div class="price-amount">$199 <small>/ ¥1,399</small></div>
+          <p class="price-desc">3–5 videos compared. See where you win, where you lose, and what the market actually wants.</p>
+          <ul class="price-features">
+            <li>15–20 page PDF report</li>
+            <li>Cross-video comparison matrix</li>
+            <li>Competitive positioning analysis</li>
+            <li>Shared vs. unique pain points across products</li>
+            <li>Full data export (Excel)</li>
+            <li>Delivered in 72 hours</li>
+          </ul>
+          <a href="mailto:olssonnasrudin207@gmail.com?subject=CommentLens%20-%20Competitive%20Scan&body=Hi%2C%0A%0AI'd%20like%20to%20order%20a%20Competitive%20Scan%20report.%0A%0AYouTube%20URLs%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AProducts%20to%20compare%3A%20%0APreferred%20report%20language%3A%20English%20%2F%20Chinese%0A%0AThanks!" class="price-btn">Order via email</a>
+        </div>
+
+        <div class="price-card">
+          <div class="price-tier">Tier 3</div>
+          <div class="price-name">Channel Intelligence</div>
+          <div class="price-amount">$499+ <small>/ ¥3,500+</small></div>
+          <p class="price-desc">Full channel analysis — up to 20 videos. Longitudinal trends, audience evolution, and strategic recommendations.</p>
+          <ul class="price-features">
+            <li>25–40 page PDF report</li>
+            <li>Longitudinal sentiment trends</li>
+            <li>Audience persona mapping</li>
+            <li>Content strategy recommendations</li>
+            <li>Complete dataset</li>
+            <li>Delivered in 5 business days</li>
+          </ul>
+          <a href="mailto:olssonnasrudin207@gmail.com?subject=CommentLens%20-%20Channel%20Intelligence&body=Hi%2C%0A%0AI'd%20like%20to%20discuss%20a%20Channel%20Intelligence%20report.%0A%0AChannel%20URL%3A%20%0AFocus%20area%3A%20%0APreferred%20report%20language%3A%20English%20%2F%20Chinese%0A%0AThanks!" class="price-btn">Contact us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN SOURCE -->
+    <section id="open-source">
+      <div class="section-num">03 — Open Source</div>
+      <h2 class="section-title">Run it yourself</h2>
+      <p class="section-lead">
+        The core analysis engine is open source. Analyze up to 50 comments per video, get a basic HTML report. No sign-up, no server, no catch.
+      </p>
+
+      <div class="oss-box">
+        <div class="oss-text">
+          <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:12px;">What the open-source edition includes</h3>
+          <p style="font-size:15px;color:var(--ink-soft);line-height:1.7;">
+            Sentiment classification, pain point extraction, feature request tagging, praise highlights — with support for Claude, OpenAI, Gemini, DeepSeek, and MiniMax. Everything runs locally on your machine.
+          </p>
+          <p style="font-size:14px;color:var(--ink-muted);margin-top:16px;line-height:1.6;">
+            The paid reports go further: executive summaries with counter-intuitive findings, attribution analysis per pain point, competitive intelligence, prioritized action checklists, and analysis of 500+ comments for statistical confidence.
+          </p>
+        </div>
+        <div class="oss-code">
+          <span class="cmd">$</span> git clone https://github.com/<br>
+          &nbsp;&nbsp;Alex-gmdotcom/commentlens.git<br>
+          <span class="cmd">$</span> cd commentlens<br>
+          <span class="cmd">$</span> pip install -r requirements.txt<br>
+          <span class="cmd">$</span> python commentlens.py<br>
+          <br>
+          <span style="color:#6b7a70;"># GUI opens → paste URL → analyze</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="f-left">
+        &copy; 2026 CommentLens
+      </div>
+      <div class="f-right">
+        <a href="https://github.com/Alex-gmdotcom/commentlens">GitHub</a>
+        <a href="mailto:olssonnasrudin207@gmail.com">olssonnasrudin207@gmail.com</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
