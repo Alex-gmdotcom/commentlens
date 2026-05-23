@@ -7,7 +7,7 @@ feature requests, and praise points. Supports multiple LLM providers.
 
 This is the open-source community edition. For deeper analysis with
 executive insights, competitive intelligence, and formatted PDF reports,
-visit: https://alex-gmdotcom.github.io/commentlens/
+visit: https://alex-gmdotcom.github.io/commentlens
 
 Dependencies:
     pip install customtkinter requests youtube-comment-downloader
@@ -239,7 +239,7 @@ def generate_html_report(product_name, video_url, all_analyses, report_summary,
         <h3 style="color:#fbbf24;">{t['cta_title']}</h3>
         <p style="color:#cbd5e1;font-size:14px;line-height:1.7;">
             {t['cta_body']}
-            <a href="https://alex-gmdotcom.github.io/commentlens/" style="color:#f59e0b;font-weight:bold;" target="_blank">{t['cta_link_text']}</a>
+            <a href="https://alex-gmdotcom.github.io/commentlens" style="color:#f59e0b;font-weight:bold;" target="_blank">{t['cta_link_text']}</a>
         </p>
         <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;">
             <span style="background:#1e293b;padding:6px 12px;border-radius:6px;font-size:12px;color:#94a3b8;">✅ Executive Summary</span>

@@ -41,7 +41,7 @@ A GUI window opens. Fill in the YouTube URL, product name, select your AI provid
 | OpenAI | [platform.openai.com](https://platform.openai.com/api-keys) | gpt-4o-mini | ~$0.02 |
 | Gemini | [aistudio.google.com](https://aistudio.google.com/apikey) | gemini-2.5-flash | ~$0.01 |
 | DeepSeek | [platform.deepseek.com](https://platform.deepseek.com) | deepseek-chat | ~$0.01 |
-| MiniMax | [minimaxi.com](https://www.minimaxi.com) | abab6.5s-chat | China-friendly |
+| MiniMax | [minimaxi.com](https://www.minimaxi.com) | MiniMax-M2.7 | China-friendly |
 
 API keys are stored locally in `~/.commentlens_config.json` and never leave your machine.
 
