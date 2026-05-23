@@ -48,7 +48,6 @@
       overflow-x: hidden;
     }
 
-    /* paper grain */
     body::before {
       content: '';
       position: fixed;
@@ -68,6 +67,45 @@
       z-index: 2;
     }
 
+    /* ===== LANG SWITCH ===== */
+    .lang-switch {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-left: 28px;
+      font-size: 13px;
+    }
+    .lang-switch button {
+      background: transparent;
+      border: none;
+      padding: 6px 14px;
+      cursor: pointer;
+      color: var(--ink-muted);
+      font-family: var(--font-body);
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .lang-switch button.active {
+      background: var(--accent);
+      color: var(--paper);
+    }
+    .lang-switch button:hover:not(.active) {
+      background: var(--paper-warm);
+    }
+
+    /* i18n: hide inactive lang */
+    [data-lang="zh"] { display: none !important; }
+    body.zh [data-lang="zh"] { display: block !important; }
+    body.zh [data-lang="en"] { display: none !important; }
+    /* inline elements need inline/inline-block restore */
+    body.zh a[data-lang="zh"],
+    body.zh span[data-lang="zh"] { display: inline-block !important; }
+    a[data-lang="en"],
+    span[data-lang="en"] { display: inline-block !important; }
+    body.zh a[data-lang="en"],
+    body.zh span[data-lang="en"] { display: none !important; }
+
     /* ===== NAV ===== */
     nav {
       display: flex;
@@ -83,6 +121,10 @@
       color: var(--accent);
       text-decoration: none;
       letter-spacing: -0.02em;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
     }
     nav a.nav-link {
       font-size: 14px;
@@ -203,7 +245,7 @@
       border-width: 2px;
     }
     .price-card.featured::after {
-      content: 'Most popular';
+      content: attr(data-badge);
       position: absolute;
       top: -12px;
       right: 24px;
@@ -332,6 +374,34 @@
     }
     .oss-box .oss-code .cmd { color: #e89478; }
 
+    /* ===== SAMPLE REPORT ===== */
+    .sample-links {
+      margin-top: 40px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .sample-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 24px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .sample-link:hover {
+      border-color: var(--highlight);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .sample-link .flag { font-size: 18px; }
+
     /* ===== FOOTER ===== */
     footer {
       border-top: 1px solid var(--line);
@@ -361,6 +431,8 @@
       .pricing-grid { grid-template-columns: 1fr; }
       .oss-box { flex-direction: column; padding: 24px; }
       .oss-box .oss-code { min-width: unset; width: 100%; }
+      .nav-right .nav-link { margin-left: 16px; font-size: 13px; }
+      .lang-switch { margin-left: 16px; }
     }
 
     /* ===== ANIMATION ===== */
@@ -381,32 +453,47 @@
     <!-- NAV -->
     <nav>
       <a href="#" class="logo">CommentLens</a>
-      <div>
-        <a href="#pricing" class="nav-link">Pricing</a>
-        <a href="#open-source" class="nav-link">Open Source</a>
+      <div class="nav-right">
+        <a href="#pricing" class="nav-link" data-lang="en">Pricing</a>
+        <a href="#pricing" class="nav-link" data-lang="zh">定价</a>
+        <a href="#open-source" class="nav-link" data-lang="en">Open Source</a>
+        <a href="#open-source" class="nav-link" data-lang="zh">开源</a>
         <a href="https://github.com/Alex-gmdotcom/commentlens" class="nav-link">GitHub</a>
-        <a href="mailto:olssonnasrudin207@gmail.com" class="nav-link">Contact</a>
+        <a href="mailto:olssonnasrudin207@gmail.com" class="nav-link" data-lang="en">Contact</a>
+        <a href="mailto:olssonnasrudin207@gmail.com" class="nav-link" data-lang="zh">联系</a>
+        <div class="lang-switch">
+          <button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+          <button onclick="setLang('zh')" id="btn-zh">中文</button>
+        </div>
       </div>
     </nav>
 
     <!-- HERO -->
     <div class="hero">
-      <h1>YouTube comments hold <em>real product intelligence.</em> We extract it.</h1>
-      <p>
+      <h1 data-lang="en">YouTube comments hold <em>real product intelligence.</em> We extract it.</h1>
+      <h1 data-lang="zh">YouTube 评论里藏着<em>真实的产品洞察。</em>我来提取。</h1>
+      <p data-lang="en">
         We analyze thousands of YouTube comments and deliver a structured report — sentiment, pain points, feature requests, competitive mentions, and actionable recommendations. You get a PDF in 48–72 hours.
       </p>
+      <p data-lang="zh">
+        我分析数千条 YouTube 评论，交付一份结构化报告——情感分布、痛点排名、需求归类、竞品提及、行动建议。PDF 格式，48–72 小时交付。
+      </p>
       <div class="hero-cta">
-        <a href="#pricing" class="btn-primary">Order a report</a>
-        <a href="./samples/sample-jetkvm-report.html" class="btn-secondary">View sample report</a>
+        <a href="#pricing" class="btn-primary" data-lang="en">Order a report</a>
+        <a href="#pricing" class="btn-primary" data-lang="zh">订购报告</a>
+        <a href="#sample" class="btn-secondary" data-lang="en">View sample report</a>
+        <a href="#sample" class="btn-secondary" data-lang="zh">查看示例报告</a>
         <a href="https://github.com/Alex-gmdotcom/commentlens" class="btn-secondary">GitHub</a>
       </div>
     </div>
 
     <!-- HOW IT WORKS -->
     <section>
-      <div class="section-num">01 — Process</div>
-      <h2 class="section-title">How it works</h2>
-      <div class="steps">
+      <div class="section-num" data-lang="en">01 — Process</div>
+      <div class="section-num" data-lang="zh">01 — 流程</div>
+      <h2 class="section-title" data-lang="en">How it works</h2>
+      <h2 class="section-title" data-lang="zh">如何运作</h2>
+      <div class="steps" data-lang="en">
         <div class="step">
           <div class="step-num">01</div>
           <h3>You send a video</h3>
@@ -423,17 +510,61 @@
           <p>A structured PDF with executive summary, ranked pain points with recommended actions, feature requests, competitive intelligence, and a prioritized action checklist.</p>
         </div>
       </div>
+      <div class="steps" data-lang="zh">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>你发来视频链接</h3>
+          <p>提供 YouTube 视频 URL 和需要聚焦的产品名称。我会在几小时内确认分析范围。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>我分析每一条评论</h3>
+          <p>AI 流水线逐条分类——区分产品反馈、对 YouTuber 的吐槽和跑题内容。每个痛点都标注归因和严重程度。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>你收到报告</h3>
+          <p>结构化 PDF：执行摘要、痛点排名（含归因与建议行动）、需求优先级、竞品洞察、行动清单。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAMPLE REPORT -->
+    <section id="sample">
+      <div class="section-num" data-lang="en">— Sample</div>
+      <div class="section-num" data-lang="zh">— 示例</div>
+      <h2 class="section-title" data-lang="en">See a real report</h2>
+      <h2 class="section-title" data-lang="zh">查看真实报告</h2>
+      <p class="section-lead" data-lang="en">
+        We analyzed 200 comments from a JetKVM review video. The top finding: the #1 pain point wasn't a product defect — it was "can't buy it in the US" (21 mentions). Security concerns outranked all feature complaints.
+      </p>
+      <p class="section-lead" data-lang="zh">
+        我分析了一个 JetKVM 评测视频的 200 条评论。最大发现：排名第一的痛点不是产品缺陷，而是"美国买不到"（21 次提及）。安全顾虑的讨论量超过了所有功能抱怨。
+      </p>
+      <div class="sample-links">
+        <a href="./samples/sample-jetkvm-report-en.html" class="sample-link" target="_blank">
+          <span class="flag">🇺🇸</span> English Report
+        </a>
+        <a href="./samples/sample-jetkvm-report.html" class="sample-link" target="_blank">
+          <span class="flag">🇨🇳</span> 中文报告
+        </a>
+      </div>
     </section>
 
     <!-- PRICING -->
     <section id="pricing">
-      <div class="section-num">02 — Pricing</div>
-      <h2 class="section-title">Reports, not subscriptions</h2>
-      <p class="section-lead">
+      <div class="section-num" data-lang="en">02 — Pricing</div>
+      <div class="section-num" data-lang="zh">02 — 定价</div>
+      <h2 class="section-title" data-lang="en">Reports, not subscriptions</h2>
+      <h2 class="section-title" data-lang="zh">买报告，不买订阅</h2>
+      <p class="section-lead" data-lang="en">
         No SaaS login. No monthly fee. Order what you need, when you need it. Each report is a standalone deliverable you own forever.
       </p>
+      <p class="section-lead" data-lang="zh">
+        没有 SaaS 登录，没有月费。需要时下单，每份报告都是独立交付物，永久归你所有。
+      </p>
 
-      <div class="pricing-grid">
+      <div class="pricing-grid" data-lang="en">
         <div class="price-card">
           <div class="price-tier">Tier 1</div>
           <div class="price-name">Single Video Deep-Dive</div>
@@ -449,8 +580,7 @@
           </ul>
           <a href="mailto:olssonnasrudin207@gmail.com?subject=CommentLens%20-%20Single%20Video%20Report&body=Hi%2C%0A%0AI'd%20like%20to%20order%20a%20Single%20Video%20Deep-Dive%20report.%0A%0AYouTube%20URL%3A%20%0AProduct%20name%3A%20%0APreferred%20report%20language%3A%20English%20%2F%20Chinese%0A%0AThanks!" class="price-btn">Order via email</a>
         </div>
-
-        <div class="price-card featured">
+        <div class="price-card featured" data-badge="Most popular">
           <div class="price-tier">Tier 2</div>
           <div class="price-name">Competitive Scan</div>
           <div class="price-amount">$199 <small>/ ¥1,399</small></div>
@@ -465,7 +595,6 @@
           </ul>
           <a href="mailto:olssonnasrudin207@gmail.com?subject=CommentLens%20-%20Competitive%20Scan&body=Hi%2C%0A%0AI'd%20like%20to%20order%20a%20Competitive%20Scan%20report.%0A%0AYouTube%20URLs%3A%0A1.%20%0A2.%20%0A3.%20%0A%0AProducts%20to%20compare%3A%20%0APreferred%20report%20language%3A%20English%20%2F%20Chinese%0A%0AThanks!" class="price-btn">Order via email</a>
         </div>
-
         <div class="price-card">
           <div class="price-tier">Tier 3</div>
           <div class="price-name">Channel Intelligence</div>
@@ -482,24 +611,84 @@
           <a href="mailto:olssonnasrudin207@gmail.com?subject=CommentLens%20-%20Channel%20Intelligence&body=Hi%2C%0A%0AI'd%20like%20to%20discuss%20a%20Channel%20Intelligence%20report.%0A%0AChannel%20URL%3A%20%0AFocus%20area%3A%20%0APreferred%20report%20language%3A%20English%20%2F%20Chinese%0A%0AThanks!" class="price-btn">Contact us</a>
         </div>
       </div>
+
+      <div class="pricing-grid" data-lang="zh">
+        <div class="price-card">
+          <div class="price-tier">档位一</div>
+          <div class="price-name">单视频深度分析</div>
+          <div class="price-amount">¥349 <small>/ $49</small></div>
+          <p class="price-desc">分析一个视频的 500+ 条评论。适合需要快速获取产品信号的团队。</p>
+          <ul class="price-features">
+            <li>8–12 页 PDF 报告</li>
+            <li>执行摘要（含反直觉发现）</li>
+            <li>痛点排名（含归因与建议行动）</li>
+            <li>需求优先级排序</li>
+            <li>附原始 CSV 数据</li>
+            <li>48 小时交付</li>
+          </ul>
+          <a href="mailto:olssonnasrudin207@gmail.com?subject=CommentLens%20-%20%E5%8D%95%E8%A7%86%E9%A2%91%E6%B7%B1%E5%BA%A6%E5%88%86%E6%9E%90&body=%E4%BD%A0%E5%A5%BD%EF%BC%8C%0A%0A%E6%88%91%E6%83%B3%E8%AE%A2%E8%B4%AD%E5%8D%95%E8%A7%86%E9%A2%91%E6%B7%B1%E5%BA%A6%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A%E3%80%82%0A%0AYouTube%20%E9%93%BE%E6%8E%A5%EF%BC%9A%0A%E4%BA%A7%E5%93%81%E5%90%8D%E7%A7%B0%EF%BC%9A%0A%E6%8A%A5%E5%91%8A%E8%AF%AD%E8%A8%80%EF%BC%9A%E4%B8%AD%E6%96%87%20%2F%20English%0A%0A%E8%B0%A2%E8%B0%A2%EF%BC%81" class="price-btn">通过邮件下单</a>
+        </div>
+        <div class="price-card featured" data-badge="最受欢迎">
+          <div class="price-tier">档位二</div>
+          <div class="price-name">竞品对比扫描</div>
+          <div class="price-amount">¥1,399 <small>/ $199</small></div>
+          <p class="price-desc">对比 3–5 个视频。看你赢在哪、输在哪，以及市场真正想要什么。</p>
+          <ul class="price-features">
+            <li>15–20 页 PDF 报告</li>
+            <li>跨视频对比矩阵</li>
+            <li>竞争定位分析</li>
+            <li>共性痛点 vs 独有痛点</li>
+            <li>完整数据导出 (Excel)</li>
+            <li>72 小时交付</li>
+          </ul>
+          <a href="mailto:olssonnasrudin207@gmail.com?subject=CommentLens%20-%20%E7%AB%9E%E5%93%81%E5%AF%B9%E6%AF%94%E6%89%AB%E6%8F%8F&body=%E4%BD%A0%E5%A5%BD%EF%BC%8C%0A%0A%E6%88%91%E6%83%B3%E8%AE%A2%E8%B4%AD%E7%AB%9E%E5%93%81%E5%AF%B9%E6%AF%94%E6%89%AB%E6%8F%8F%E6%8A%A5%E5%91%8A%E3%80%82%0A%0AYouTube%20%E9%93%BE%E6%8E%A5%EF%BC%9A%0A1.%20%0A2.%20%0A3.%20%0A%0A%E5%AF%B9%E6%AF%94%E4%BA%A7%E5%93%81%EF%BC%9A%0A%E6%8A%A5%E5%91%8A%E8%AF%AD%E8%A8%80%EF%BC%9A%E4%B8%AD%E6%96%87%20%2F%20English%0A%0A%E8%B0%A2%E8%B0%A2%EF%BC%81" class="price-btn">通过邮件下单</a>
+        </div>
+        <div class="price-card">
+          <div class="price-tier">档位三</div>
+          <div class="price-name">频道情报分析</div>
+          <div class="price-amount">¥3,500+ <small>/ $499+</small></div>
+          <p class="price-desc">全频道分析——最多 20 个视频。纵向趋势、受众演变、战略建议。</p>
+          <ul class="price-features">
+            <li>25–40 页 PDF 报告</li>
+            <li>纵向情感趋势</li>
+            <li>受众画像分析</li>
+            <li>内容策略建议</li>
+            <li>完整数据集</li>
+            <li>5 个工作日交付</li>
+          </ul>
+          <a href="mailto:olssonnasrudin207@gmail.com?subject=CommentLens%20-%20%E9%A2%91%E9%81%93%E6%83%85%E6%8A%A5%E5%88%86%E6%9E%90&body=%E4%BD%A0%E5%A5%BD%EF%BC%8C%0A%0A%E6%88%91%E6%83%B3%E5%92%A8%E8%AF%A2%E9%A2%91%E9%81%93%E6%83%85%E6%8A%A5%E5%88%86%E6%9E%90%E6%9C%8D%E5%8A%A1%E3%80%82%0A%0A%E9%A2%91%E9%81%93%E9%93%BE%E6%8E%A5%EF%BC%9A%0A%E5%85%B3%E6%B3%A8%E6%96%B9%E5%90%91%EF%BC%9A%0A%E6%8A%A5%E5%91%8A%E8%AF%AD%E8%A8%80%EF%BC%9A%E4%B8%AD%E6%96%87%20%2F%20English%0A%0A%E8%B0%A2%E8%B0%A2%EF%BC%81" class="price-btn">联系我</a>
+        </div>
+      </div>
     </section>
 
     <!-- OPEN SOURCE -->
     <section id="open-source">
-      <div class="section-num">03 — Open Source</div>
-      <h2 class="section-title">Run it yourself</h2>
-      <p class="section-lead">
+      <div class="section-num" data-lang="en">03 — Open Source</div>
+      <div class="section-num" data-lang="zh">03 — 开源</div>
+      <h2 class="section-title" data-lang="en">Run it yourself</h2>
+      <h2 class="section-title" data-lang="zh">自己动手跑</h2>
+      <p class="section-lead" data-lang="en">
         The core analysis engine is open source. Analyze up to 50 comments per video, get a basic HTML report. No sign-up, no server, no catch.
+      </p>
+      <p class="section-lead" data-lang="zh">
+        核心分析引擎已开源。每个视频可分析最多 50 条评论，生成基础 HTML 报告。无需注册，无需服务器，没有套路。
       </p>
 
       <div class="oss-box">
         <div class="oss-text">
-          <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:12px;">What the open-source edition includes</h3>
-          <p style="font-size:15px;color:var(--ink-soft);line-height:1.7;">
+          <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:12px;" data-lang="en">What the open-source edition includes</h3>
+          <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:12px;" data-lang="zh">开源版包含</h3>
+          <p style="font-size:15px;color:var(--ink-soft);line-height:1.7;" data-lang="en">
             Sentiment classification, pain point extraction, feature request tagging, praise highlights — with support for Claude, OpenAI, Gemini, DeepSeek, and MiniMax. Everything runs locally on your machine.
           </p>
-          <p style="font-size:14px;color:var(--ink-muted);margin-top:16px;line-height:1.6;">
+          <p style="font-size:15px;color:var(--ink-soft);line-height:1.7;" data-lang="zh">
+            情感分类、痛点提取、需求标签、好评亮点——支持 Claude、OpenAI、Gemini、DeepSeek、MiniMax 五家 AI 供应商。全部本地运行。
+          </p>
+          <p style="font-size:14px;color:var(--ink-muted);margin-top:16px;line-height:1.6;" data-lang="en">
             The paid reports go further: executive summaries with counter-intuitive findings, attribution analysis per pain point, competitive intelligence, prioritized action checklists, and analysis of 500+ comments for statistical confidence.
+          </p>
+          <p style="font-size:14px;color:var(--ink-muted);margin-top:16px;line-height:1.6;" data-lang="zh">
+            付费报告更深入：执行摘要（含反直觉发现）、逐条归因分析、竞品洞察、优先级行动清单，以及 500+ 条评论的统计级分析。
           </p>
         </div>
         <div class="oss-code">
@@ -526,5 +715,24 @@
     </footer>
 
   </div>
+
+  <script>
+    function setLang(lang) {
+      document.body.classList.toggle('zh', lang === 'zh');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      // Update featured badge text
+      document.querySelectorAll('.price-card.featured').forEach(function(card) {
+        card.setAttribute('data-badge', lang === 'zh' ? '最受欢迎' : 'Most popular');
+      });
+      try { localStorage.setItem('cl-lang', lang); } catch(e) {}
+    }
+    // Restore saved language preference
+    try {
+      var saved = localStorage.getItem('cl-lang');
+      if (saved === 'zh') setLang('zh');
+    } catch(e) {}
+  </script>
 </body>
 </html>
