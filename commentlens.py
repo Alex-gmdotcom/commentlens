@@ -7,7 +7,7 @@ feature requests, and praise points. Supports multiple LLM providers.
 
 This is the open-source community edition. For deeper analysis with
 executive insights, competitive intelligence, and formatted PDF reports,
-visit: https://commentlens.io
+visit: https://alex-gmdotcom.github.io/commentlens
 
 Dependencies:
     pip install customtkinter requests youtube-comment-downloader
@@ -77,7 +77,7 @@ I18N = {
         "mentions": "提及次数",
         "cta_title": "📈 需要更深度的分析？",
         "cta_body": "开源版提供基础分析能力。如需执行摘要、归因分析、行动清单、竞品洞察等深度报告，请访问",
-        "cta_link_text": "commentlens.io",
+        "cta_link_text": "alex-gmdotcom.github.io/commentlens",
     },
     "en": {
         "report_title": "CommentLens Analysis Report",
@@ -93,7 +93,7 @@ I18N = {
         "mentions": "Mentions",
         "cta_title": "📈 Need deeper analysis?",
         "cta_body": "The open-source edition covers the basics. For executive summaries, attribution analysis, action checklists, and competitive intelligence, visit",
-        "cta_link_text": "commentlens.io",
+        "cta_link_text": "alex-gmdotcom.github.io/commentlens",
     }
 }
 
@@ -239,7 +239,7 @@ def generate_html_report(product_name, video_url, all_analyses, report_summary,
         <h3 style="color:#fbbf24;">{t['cta_title']}</h3>
         <p style="color:#cbd5e1;font-size:14px;line-height:1.7;">
             {t['cta_body']}
-            <a href="https://commentlens.io" style="color:#f59e0b;font-weight:bold;" target="_blank">{t['cta_link_text']}</a>
+            <a href="https://alex-gmdotcom.github.io/commentlens" style="color:#f59e0b;font-weight:bold;" target="_blank">{t['cta_link_text']}</a>
         </p>
         <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;">
             <span style="background:#1e293b;padding:6px 12px;border-radius:6px;font-size:12px;color:#94a3b8;">✅ Executive Summary</span>
@@ -441,7 +441,7 @@ class CommentLensApp(ctk.CTk):
         # --- Pro Upgrade Hint ---
         ctk.CTkLabel(left_frame, text="━" * 40, text_color="#1e293b").pack(padx=10, pady=(15, 5))
         ctk.CTkLabel(left_frame, text="📈 需要更深度的分析?", font=("Arial", 13, "bold"), text_color="#f59e0b").pack(anchor="w", padx=10)
-        ctk.CTkLabel(left_frame, text="执行摘要 · 归因分析 · 行动清单 · 竞品洞察\n500+ 评论 · 格式化 PDF 报告\n→ commentlens.io", text_color="gray", font=("Arial", 11), justify="left").pack(anchor="w", padx=10, pady=(2, 10))
+        ctk.CTkLabel(left_frame, text="执行摘要 · 归因分析 · 行动清单 · 竞品洞察\n500+ 评论 · 格式化 PDF 报告\n→ alex-gmdotcom.github.io/commentlens", text_color="gray", font=("Arial", 11), justify="left").pack(anchor="w", padx=10, pady=(2, 10))
 
         # --- Log Area ---
         ctk.CTkLabel(right_frame, text="📋 运行日志", font=("Arial", 14, "bold")).pack(anchor="w", padx=10, pady=(10, 5))
